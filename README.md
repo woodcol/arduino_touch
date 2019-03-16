@@ -3,7 +3,7 @@
 ##使用方法
 
 1.在arduino的IDE里打开touchTest目录下的touchtest.ino。
-
+![](https://github.com/woodcol/arduino_touch/raw/master/img/dk.png)
 2.设置好arduino的串口,windows下显示com+数字的接口
 ![](https://github.com/woodcol/arduino_touch/raw/master/img/com.png)
 3.设置好arduino的编程器为AVR ISP.
