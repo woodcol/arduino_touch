@@ -23,6 +23,11 @@ if __name__ == '__main__':
     touchOnce()
 ```
 
+python串口模块pyserial可以使用pip工具进行安装
+```shell
+pip install pyserial
+```
+
 关于python串口更多相关知识，请参考:
 
 https://blog.csdn.net/huayucong/article/details/48729907
