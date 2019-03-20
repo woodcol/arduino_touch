@@ -16,3 +16,5 @@
 
 5.点击上传，等待IDE上传完成就好。
 ![](https://github.com/woodcol/arduino_touch/raw/master/img/sc.png)
+
+6.注意，在arduino最新版1.8.8中，如果出现烧写错误，要把处理器设置为(OLD ATmega328p),这是新为新版arduino和旧板的芯引导程序bootloader不一样。
