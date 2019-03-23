@@ -1,6 +1,11 @@
 # arduino_touch
 
-##使用方法
+## USB转串口芯片驱动程序下载
+
+这是ch340芯片的官方驱动，有linux，mac，windows等等驱动,选择自已适合自已电脑系统的驱动
+http://www.wch.cn/products/CH340.html
+
+## 使用方法
 
 1.在arduino的IDE里打开touchTest目录下的touchtest.ino。
 ![](https://github.com/woodcol/arduino_touch/raw/master/img/dk.png)
