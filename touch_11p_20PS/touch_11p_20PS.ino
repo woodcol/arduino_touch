@@ -102,7 +102,7 @@ defineTask(Task1);
   }
  }
 
-//快速定义，按键检测进程
+//快速定义，按键检测进程,这个功能是一开始就开启每秒点22次，按一下功能键后就停止点击了，再按一下又会开启点击
  defineTaskLoop(Task2)
  {
    int keyType = digitalRead(key);
@@ -111,6 +111,17 @@ defineTask(Task1);
     delay(1000);              //按键消抖延时1秒
   }
  }
+
+////快速定义，按键检测进程，这个功能是当按键按下时会每秒点22次，不按时就不点
+// defineTaskLoop(Task2)
+// {
+//   int keyType = digitalRead(key);
+//  if(!keyType){
+//    isStart = true;       //按键被按了一次
+//  }else{
+//    isStart = false;
+//  }
+// }
 
 //Arduino开机或者复位后只运行一次的初始化函数setup()
 void setup() {
