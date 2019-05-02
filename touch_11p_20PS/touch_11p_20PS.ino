@@ -40,6 +40,7 @@ defineTask(Task1);
   pinMode(n7, OUTPUT);    
   pinMode(n8, OUTPUT);    
   pinMode(n9, OUTPUT);    
+  pinMode(ok, OUTPUT); 
   delay(1);
   Serial.begin(115200);
   //初始化所有点击都为非点击状态
@@ -53,6 +54,7 @@ defineTask(Task1);
   digitalWrite(n7, HIGH); 
   digitalWrite(n8, HIGH); 
   digitalWrite(n9, HIGH); 
+  digitalWrite(ok, HIGH); 
   delay(1);
  }
  void Task1::loop()
