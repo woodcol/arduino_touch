@@ -16,7 +16,7 @@
 #define key   A0
 
 
-#define touchTime   20    //点击屏的时间
+#define touchTime   25    //点击屏的时间
 
 #define delayTime   25    //两次点击的间隔时间
 
