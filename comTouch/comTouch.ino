@@ -41,35 +41,42 @@ void setup() {
 char tmp = '0';
 
 void loop() {
-  
+  digitalWrite(D8, HIGH);
   if (Serial.available() > 0) {
-    delay(5); // 等待数据传完
+    delay(2); // 等待数据传完
+    digitalWrite(D8, HIGH);
     tmp = Serial.read();
-    delay(3);
+    delay(2);
     Serial.write(tmp);
-    delay(3);
-  }else{
-    tmp = '0';
+    delay(2);
   }
  switch(tmp){
     case '1':
     {
       //第一个引脚，点一下
+      digitalWrite(D8, HIGH);
       digitalWrite(D8, LOW);
       delay(35);
       digitalWrite(D8, HIGH);
+      delay(50);
+      tmp = '0';
       break;
     }
     case '2': 
     {
       //第二个引脚，点一下
+      digitalWrite(D8, HIGH);
       digitalWrite(D8, LOW);
       delay(35);
       digitalWrite(D8, HIGH);
+      delay(50);
+      tmp = '0';
       break;
     }
     default: { 
      digitalWrite(D8, HIGH);
+     delay(50);
+     tmp = '0';
      break;
     }
  }
