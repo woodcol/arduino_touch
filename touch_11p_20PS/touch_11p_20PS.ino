@@ -1,17 +1,17 @@
 
 #include <SCoop.h>
 
-#define J2 2    //控制点击数字2的引脚，定义为板子上的D2引脚
-#define J3 3    //控制点击数字3的引脚，定义为板子上的D3引脚
-#define J4 4    //控制点击数字4的引脚，定义为板子上的D4引脚
-#define J5 5    //控制点击数字5的引脚，定义为板子上的D5引脚
-#define J6 6    //控制点击数字6的引脚，定义为板子上的D6引脚
-#define J7 7    //控制点击数字7的引脚，定义为板子上的D7引脚
-#define J8 8    //控制点击数字8的引脚，定义为板子上的D8引脚
-#define J9 9    //控制点击数字9的引脚，定义为板子上的D9引脚
-#define J10 10   //控制点击数字0的引脚，定义为板子上的D10引脚
-#define J1 11   //控制点击数字2的引脚，定义为板子上的D11引脚
-#define Jok 12   //控制点击输入密码完成后的确定的引脚，定义为板子上的D12引脚
+#define J1 11   //控制点击数字1的引脚,板子上的J1点击头，定义为arduino nano小板子上的D11引脚
+#define J2 2    //控制点击数字2的引脚,板子上的J2点击头，定义为arduino nano小板子上的D2引脚
+#define J3 3    //控制点击数字3的引脚,板子上的J3点击头，定义为arduino nano小板子上的D3引脚
+#define J4 4    //控制点击数字4的引脚,板子上的J4点击头，定义为arduino nano小板子上的D4引脚
+#define J5 5    //控制点击数字5的引脚,板子上的J5点击头，定义为arduino nano小板子上的D5引脚
+#define J6 6    //控制点击数字6的引脚,板子上的J6点击头，定义为arduino nano小板子上的D6引脚
+#define J7 7    //控制点击数字7的引脚,板子上的J7点击头，定义为arduino nano小板子上的D7引脚
+#define J8 8    //控制点击数字8的引脚,板子上的J8点击头，定义为arduino nano小板子上的D8引脚
+#define J9 9    //控制点击数字9的引脚,板子上的J9点击头，定义为arduino nano小板子上的D9引脚
+#define J10 10  //控制点击数字0的引脚,板子上的J10点击头，定义为arduino nano小板子上的D10引脚
+#define Jok 12   //控制点击输入密码完成后的确定的引脚,板子上的Jok点击头，定义为arduino nano小板子上的D12引脚
 
 #define key   A0
 

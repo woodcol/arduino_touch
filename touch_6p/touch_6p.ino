@@ -1,17 +1,17 @@
 
 #include <SCoop.h>
 
-#define n2 2    //控制点击数字2的引脚，定义为板子上的D2引脚
-#define n3 3    //控制点击数字3的引脚，定义为板子上的D3引脚
-#define n4 4    //控制点击数字4的引脚，定义为板子上的D4引脚
-#define n5 5    //控制点击数字5的引脚，定义为板子上的D5引脚
-#define n6 6    //控制点击数字6的引脚，定义为板子上的D6引脚
-#define n7 7    //控制点击数字7的引脚，定义为板子上的D7引脚
-#define n8 8    //控制点击数字8的引脚，定义为板子上的D8引脚
-#define n9 9    //控制点击数字9的引脚，定义为板子上的D9引脚
-#define n0 10   //控制点击数字0的引脚，定义为板子上的D10引脚
-#define n1 11   //控制点击数字2的引脚，定义为板子上的D11引脚
-#define ok 12   //控制点击输入密码完成后的确定的引脚，定义为板子上的D12引脚
+#define J1 11   //控制点击数字1的引脚,板子上的J1点击头，定义为arduino nano小板子上的D11引脚
+#define J2 2    //控制点击数字2的引脚,板子上的J2点击头，定义为arduino nano小板子上的D2引脚
+#define J3 3    //控制点击数字3的引脚,板子上的J3点击头，定义为arduino nano小板子上的D3引脚
+#define J4 4    //控制点击数字4的引脚,板子上的J4点击头，定义为arduino nano小板子上的D4引脚
+#define J5 5    //控制点击数字5的引脚,板子上的J5点击头，定义为arduino nano小板子上的D5引脚
+#define J6 6    //控制点击数字6的引脚,板子上的J6点击头，定义为arduino nano小板子上的D6引脚
+#define J7 7    //控制点击数字7的引脚,板子上的J7点击头，定义为arduino nano小板子上的D7引脚
+#define J8 8    //控制点击数字8的引脚,板子上的J8点击头，定义为arduino nano小板子上的D8引脚
+#define J9 9    //控制点击数字9的引脚,板子上的J9点击头，定义为arduino nano小板子上的D9引脚
+#define J10 10  //控制点击数字0的引脚,板子上的J10点击头，定义为arduino nano小板子上的D10引脚
+#define Jok 12   //控制点击输入密码完成后的确定的引脚,板子上的Jok点击头，定义为arduino nano小板子上的D12引脚
 
 #define key   A0
 
@@ -30,29 +30,31 @@ defineTask(Task1);
   delay(100);
   //设置所有点击控制引脚为功能输出
   pinMode(LED_BUILTIN, OUTPUT);   //设置板子上的控制LED的引脚为输出高低电平的功能，引脚输出高电平时板子上的LED灯会亮
-  pinMode(n0, OUTPUT);       
-  pinMode(n1, OUTPUT);    
-  pinMode(n2, OUTPUT);    
-  pinMode(n3, OUTPUT);    
-  pinMode(n4, OUTPUT);    
-  pinMode(n5, OUTPUT);    
-  pinMode(n6, OUTPUT);    
-  pinMode(n7, OUTPUT);    
-  pinMode(n8, OUTPUT);    
-  pinMode(n9, OUTPUT);    
+  pinMode(J10, OUTPUT);       
+  pinMode(J1, OUTPUT);    
+  pinMode(J2, OUTPUT);    
+  pinMode(J3, OUTPUT);    
+  pinMode(J4, OUTPUT);    
+  pinMode(J5, OUTPUT);    
+  pinMode(J6, OUTPUT);    
+  pinMode(J7, OUTPUT);    
+  pinMode(J8, OUTPUT);    
+  pinMode(J9, OUTPUT);    
+  pinMode(Jok, OUTPUT); 
   delay(1);
   Serial.begin(115200);
   //初始化所有点击都为非点击状态
-  digitalWrite(n0, HIGH);  
-  digitalWrite(n1, HIGH); 
-  digitalWrite(n2, HIGH); 
-  digitalWrite(n3, HIGH); 
-  digitalWrite(n4, HIGH); 
-  digitalWrite(n5, HIGH); 
-  digitalWrite(n6, HIGH); 
-  digitalWrite(n7, HIGH); 
-  digitalWrite(n8, HIGH); 
-  digitalWrite(n9, HIGH); 
+  digitalWrite(J10, HIGH);  
+  digitalWrite(J1, HIGH); 
+  digitalWrite(J2, HIGH); 
+  digitalWrite(J3, HIGH); 
+  digitalWrite(J4, HIGH); 
+  digitalWrite(J5, HIGH); 
+  digitalWrite(J6, HIGH); 
+  digitalWrite(J7, HIGH); 
+  digitalWrite(J8, HIGH); 
+  digitalWrite(J9, HIGH); 
+  digitalWrite(Jok, HIGH); 
   delay(1);
  }
  void Task1::loop()
@@ -60,69 +62,69 @@ defineTask(Task1);
    if(isStart){
 
     //j10点一次
-    digitalWrite(n0,LOW);
+    digitalWrite(J10,LOW);
     delay(touchTime);
-    digitalWrite(n0,HIGH);
+    digitalWrite(J10,HIGH);
     delay(delayTime);
 
     //j1点一次
-    digitalWrite(n1,LOW);
+    digitalWrite(J1,LOW);
     delay(touchTime);
-    digitalWrite(n1,HIGH);
+    digitalWrite(J1,HIGH);
     delay(delayTime);
 
     //j2点一次
-    digitalWrite(n2,LOW);
+    digitalWrite(J2,LOW);
     delay(touchTime);
-    digitalWrite(n2,HIGH);
+    digitalWrite(J2,HIGH);
     delay(delayTime);
 
     //j3点一次
-    digitalWrite(n3,LOW);
+    digitalWrite(J3,LOW);
     delay(touchTime);
-    digitalWrite(n3,HIGH);
+    digitalWrite(J3,HIGH);
     delay(delayTime);
 
     //j4点一次
-    digitalWrite(n4,LOW);
+    digitalWrite(J4,LOW);
     delay(touchTime);
-    digitalWrite(n4,HIGH);
+    digitalWrite(J4,HIGH);
     delay(delayTime);
 
     //j5点一次
-    digitalWrite(n5,LOW);
+    digitalWrite(J5,LOW);
     delay(touchTime);
-    digitalWrite(n5,HIGH);
+    digitalWrite(J5,HIGH);
     delay(delayTime);
 
     //j6点一次
-    digitalWrite(n6,LOW);
+    digitalWrite(J6,LOW);
     delay(touchTime);
-    digitalWrite(n6,HIGH);
+    digitalWrite(J6,HIGH);
     delay(delayTime);
 
     //j7点一次
-    digitalWrite(n7,LOW);
+    digitalWrite(J7,LOW);
     delay(touchTime);
-    digitalWrite(n7,HIGH);
+    digitalWrite(J7,HIGH);
     delay(delayTime);
 
     //j8点一次
-    digitalWrite(n8,LOW);
+    digitalWrite(J8,LOW);
     delay(touchTime);
-    digitalWrite(n8,HIGH);
+    digitalWrite(J8,HIGH);
     delay(delayTime);
 
     //j9点一次
-    digitalWrite(n9,LOW);
+    digitalWrite(J9,LOW);
     delay(touchTime);
-    digitalWrite(n9,HIGH);
+    digitalWrite(J9,HIGH);
     delay(delayTime);
 
-    //jok点一次
-    digitalWrite(ok,LOW);
+    //Jok点一次
+    digitalWrite(Jok,LOW);
     delay(touchTime);
-    digitalWrite(ok,HIGH);
+    digitalWrite(Jok,HIGH);
     delay(delayTime);
   }
  }
