@@ -13,19 +13,29 @@ class STool(object):
     """docstring for STool"""
     #pdev:串口设备名
     #pbtlv:波特率,默认为115200
-    def __init__(self, pdev,pbtlv=115200):
+    def __init__(self):
         super(STool, self).__init__()
+        self.dev = None
+        self.pbtv = None
+        self.t = serial.Serial('/dev/cu.wchusbserial14140',115200,timeout=0.5)
+        self.isOK = False
+    def setPort(self,pdev,pbtlv=115200):
         self.dev = pdev
         self.pbtv = pbtlv
-        self.t = None
-        self.isOK = False
     #打开串口
     def openSerial(self):
-        self.t = serial.Serial(self.dev,self.pbtv,timeout=1)  #初始化串口
-        if self.t and self.t.isOpen():
-            return True
+        print(self.dev)
+        print(self.pbtv)
+        # self.t = serial.Serial(str(self.dev),int(self.pbtv),timeout=1)  #初始化串口
+        if self.t:
+            if not self.t.isOpen():
+                print('serial not open')
+                self.t.open()
+            if self.t.isOpen():
+                return True
         else:
-            return False
+            print('not heave serial')
+        return False
 
     def closeSerial(self):
         if self.t and self.t.isOpen():
@@ -38,53 +48,54 @@ class STool(object):
             return True
         else:
             return False
-
-    #测试通信是否正常,向设备发送连接测试字符，如果成功返回则说明连接正常
-    def checkDevice(self):
-        bstr = self.sendCmd('t')
-        if bstr == 't':
-            self.isOK = True
-        else:
-            self.isOK = False
-
     #发设备发送命令字符,pcmd为一个字符
     def sendCmd(self,pcmd):
+        print('per send cmd:%s'%(pcmd))
         if self.isOpen():
+            print('is open sendcmd')
             self.t.write(pcmd)
+            print('write end')
             self.t.flush()
-            time.sleep(0.2) #等200毫秒
-            n = t.inWaiting()
-            if n:
-                pstr = t.read(n)
-                print(pstr)
-                return pstr
-            else:
-                return ''
+            print('send start,%s'%(pcmd))
+            return True
         else:
-            return ''
+            print('serial not open')
+            return False
+    def readPort(self):
+        n = self.t.inWaiting()
+        # print(n)
+        if n > 0:
+            pstr = self.t.read(n)
+            return pstr
+        return ''
 
-stool = None
 
-def initSerial(pPort,pBTV):
-    global stool
-    stool = STool(pPort,pBTV)
+stool = STool()
 
-def openSerial():
+def func_initSerial(pPort,pBTV):
+    print('initSerial')
+    stool.setPort('/dev/cu.wchusbserial14140',115200)
+    print('initSerial end')
+
+def func_openSerial():
+    if stool:
+        print('stool is heave')
     isopen = stool.openSerial()
     return isopen
 
-def checkPort():
-    stool.checkDevice()
-    return stool.isOK
-
-def sendCMD(pcmd):
+def func_sendCMD(pcmd):
     back = stool.sendCmd(pcmd)
+    print('send cmd python back:%d'%(back))
     return back
 
-def closePort():
+def func_readPort():
+    back = stool.readPort()
+    return back
+
+def func_closePort():
     stool.closeSerial()
 
-def touchOnce():
+def func_touchOnce():
     dev = '/dev/cu.wchusbserial14140'  #这里请写你电脑正确的串口,windows请写"COM数字"这样的端口
     t = serial.Serial(dev,115200,timeout=1) #115200
     # t.open()
@@ -125,7 +136,27 @@ def touchOnce():
     t.close()
 def test():
     print('aaaabbbb')
+    func_initSerial('/dev/cu.wchusbserial14140', 115200)
+    time.sleep(2)
+    if(func_openSerial()):
+        print('open ok')
+    else:
+        print('open erro')
+    time.sleep(5)
+    func_sendCMD('t')
+    count = 10
+    while count > 0:
+        count -= 1
+        data = func_readPort()
+        if data == '':
+            time.sleep(0.1)
+        else:
+            print('get port data=%s'%(data))
+            break
+    time.sleep(1)
+    func_closePort()
+
 #测试
 if __name__ == '__main__':
-    touchOnce()
+    test()
     

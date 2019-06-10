@@ -48,6 +48,7 @@ bool HelloWorld::init()
     std::string respath = FileUtils::getInstance()->fullPathForFilename("res/script/pyutil.py");
     std::string scriptpath = PyUtil::g_getFolderPath(respath);
     _pyutil->initWithPyFileName(scriptpath);
+    _pyutil->_testStep = -1;
     
     _portName = "";
     _uiLayer = Layer::create();
@@ -100,11 +101,29 @@ bool HelloWorld::init()
     _inputBG =dynamic_cast<Layout*>(Helper::seekWidgetByName(_widget, "panle_bg"));
     _inputBG->setVisible(false);
     
+    this->schedule(schedule_selector(HelloWorld::readPort),0.05f);
     
     return true;
 }
 
+void HelloWorld::CallBackForSend(std::string callback)
+{
+    if(_pyutil->_lastSendCmd.compare(callback.c_str()) == 0)
+    {
+        _logtxt->setString(callback);
+    }
+}
 
+void HelloWorld::readPort(float dt){
+    std::string readval= _pyutil->readPort();
+    if(readval.empty()){
+        return;
+    }else{
+        _lastReadData = readval;
+        CCLOG("read data=%s",readval.c_str());
+        CallBackForSend(_lastReadData);
+    }
+}
 HelloWorld::HelloWorld()
 {
 #ifdef _WIN32
@@ -220,14 +239,13 @@ void HelloWorld::onKeyReleased(EventKeyboard::KeyCode keycode, Event *event)
 }
 
 
-
 void HelloWorld::sendCmd(std::string pcmd)
 {
     
     if(pcmd.empty()){
         return;
     }else{
-        
+        _pyutil->sendCMD(pcmd);
     }
 }
 
@@ -269,8 +287,9 @@ void HelloWorld::btnEvent(Ref *pSender, Widget::TouchEventType type)
                     int tmpint = atoi(comport.c_str());
                     if(comport.compare("0") != 0 && tmpint == 0)
                     {
-                        CCLOG("erro comport number %s",comport.c_str());
+//                        CCLOG("erro comport number %s",comport.c_str());
                         if(comport.compare("test") == 0){
+                            CCLOG("connect test");
                             _pyutil->pyfuncTest();
                         }
                     }else{

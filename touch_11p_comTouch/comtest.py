@@ -11,7 +11,7 @@ import time
 
 def touchOnce():
     dev = '/dev/cu.wchusbserial14140'  #这里请写你电脑正确的串口,windows请写"COM数字"这样的端口
-    t = serial.Serial(dev,115200,timeout=1) #115200
+    t = serial.Serial(dev,115200,timeout=0.1) #115200
     # t.open()
 
     print(t.name)
@@ -28,18 +28,18 @@ def touchOnce():
     print(t.interCharTimeout)   #字符间隔超时
     print('-'*10)
     # n = t.write('x')
-    time.sleep(2)
+    time.sleep(3)
     s = t.write('5')
     t.flush()
     n = t.inWaiting()
     count = 10
-    # while n < 1 and count > 0:
-    #     n = t.inWaiting()
-    #     # s = t.write('2')
-    #     t.flush()
-    #     print(n)
-    #     time.sleep(0.1)
-    #     count -= 1
+    while n < 1 and count > 0:
+        n = t.inWaiting()
+        s = t.write('2')
+        t.flush()
+        print(n)
+        time.sleep(0.1)
+        count -= 1
     n = t.inWaiting()
     print(n)
     time.sleep(0.5)

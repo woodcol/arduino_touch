@@ -37,6 +37,7 @@ public:
     PyObject* m_func_openSerial;         //打开串口的python函数
     PyObject* m_func_checkPort;          //检查串口通信的python函数
     PyObject* m_func_sendCMD;            //串口发送命令的python函数
+    PyObject* m_func_readPort;            //串口发送命令的python函数
     PyObject* m_func_closePort;          //关闭串口的python函数
     
     
@@ -47,10 +48,10 @@ public:
     void initWithPort(std::string port,int btv = 115200);
     //打开串口
     bool openSerial();
-    //检查串口通信
-    bool checkSerial();
     //串口发送字符命令
-    std::string sendCMD(std::string pcmd);
+    bool sendCMD(std::string pcmd);
+    //串口读取字符命令
+    std::string readPort();
     //关闭串口
     void closeSerial();
     
@@ -60,6 +61,9 @@ public:
     
     //test
     void pyfuncTest();
+    int _testStep = -1;
+    
+    std::string _lastSendCmd;
     
 };
 

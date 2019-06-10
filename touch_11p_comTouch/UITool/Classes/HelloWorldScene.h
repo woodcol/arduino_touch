@@ -56,11 +56,15 @@ public:
 //输入框
     bool isOpen = false;
     
-//UDP网络
+//python脚本
     PyUtil* _pyutil;
     std::string _portName;
     void sendCmd(std::string pcmd);
-
+    std::string _lastReadData;
+    //定时读取串口
+    void readPort(float dt);
+    
+    void CallBackForSend(std::string callback);
     
 };
 
