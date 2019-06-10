@@ -45,6 +45,10 @@ bool HelloWorld::init()
 
     
     _pyutil = new PyUtil();
+    std::string respath = FileUtils::getInstance()->fullPathForFilename("res/script/pyutil.py");
+    std::string scriptpath = PyUtil::g_getFolderPath(respath);
+    _pyutil->initWithPyFileName(scriptpath);
+    
     _portName = "";
     _uiLayer = Layer::create();
     addChild(_uiLayer);
@@ -251,7 +255,7 @@ void HelloWorld::btnEvent(Ref *pSender, Widget::TouchEventType type)
              CCLOG("touch moveed---");
         }
             break;
-            
+        
         case Widget::TouchEventType::ENDED:
         {
              CCLOG("touch ended---");
@@ -266,8 +270,13 @@ void HelloWorld::btnEvent(Ref *pSender, Widget::TouchEventType type)
                     if(comport.compare("0") != 0 && tmpint == 0)
                     {
                         CCLOG("erro comport number %s",comport.c_str());
+                        if(comport.compare("test") == 0){
+                            _pyutil->pyfuncTest();
+                        }
                     }else{
                         CCLOG("btn_connect %s",comport.c_str());
+                        _portName = "COM" + comport;
+                        _pyutil->initWithPort(_portName);
                     }
                 }
                 
