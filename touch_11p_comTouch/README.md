@@ -8,6 +8,12 @@
 
 在UTool目录下为电脑端有界面的上位机程序源码，程序界面使用cocos2d-x游戏引擎开发。串口部分使用python的pyserial串口模块，整个上位机界面部分使用C++编写，串口部分使用python编写，所以项目中用到了C++调用Python混合编程。
 
+本上位机使用的是cocos2d-x 3.15版本
+
+cocos2d-x项目地址：
+https://github.com/cocos2d/cocos2d-x
+
+
 ##### Arduino程序说明
 comTouch目录为arduino上开发板程序源码，这里使用到了SCoop的Arduino的多线程库。这个库在项目上层的lib目录下
 
