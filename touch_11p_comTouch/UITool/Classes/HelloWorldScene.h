@@ -34,6 +34,8 @@ public:
     
     std::vector<cocos2d::ui::Button*> _btns;
     
+    cocos2d::ui::Button* _btnconnect;
+    
 
     void btnEvent(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
     
@@ -56,15 +58,33 @@ public:
 //输入框
     bool isOpen = false;
     
+    bool isCheckOK = false;
+    
+    bool isOpeningCOM = false;
+    
 //python脚本
     PyUtil* _pyutil;
+    
+    void initPytool(std::string pport,int btv = 115200);
+    
     std::string _portName;
     void sendCmd(std::string pcmd);
     std::string _lastReadData;
     //定时读取串口
     void readPort(float dt);
     
+    void openSerial(std::string comport);
+    
     void CallBackForSend(std::string callback);
+    
+    void delayFunc(float dt);
+    
+    void showlog(std::string plog);
+    
+    void resetSerial();
+    
+    int _openTimes;
+    
     
 };
 

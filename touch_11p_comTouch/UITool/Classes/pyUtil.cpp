@@ -77,8 +77,8 @@ bool PyUtil::initPyFunc()
         //打开串口,无参数，返回是否打开成功，成功为true,失败为false
         m_func_openSerial = PyObject_GetAttrString(m_pModule, "func_openSerial");
         
-        //检查通信是否正确,正常返回true, 错误返回false
-        m_func_checkPort = PyObject_GetAttrString(m_pModule, "func_checkPort");
+        //检查串口是否打开,正常返回true, 错误返回false
+        m_func_checkPort = PyObject_GetAttrString(m_pModule, "func_isSerialOpen");
         
         //向串口发送数据，一个参数发送的数据为一个字符，,正常会返回发送的字符，否则返回空字符
         m_func_sendCMD = PyObject_GetAttrString(m_pModule, "func_sendCMD");
@@ -110,6 +110,7 @@ void PyUtil::initWithPort(std::string port,int btv)
       }else{
           printf("init serial erro...\n");
       }
+    Py_Finalize();
 }
 
 bool PyUtil::openSerial()
@@ -206,7 +207,21 @@ std::vector<std::string> PyUtil::getPorts()
 }
 bool PyUtil::isOpen()
 {
-    return openSerial();
+    if(m_func_checkPort)
+    {
+        PyObject* args = Py_BuildValue("()");
+        PyObject* pRet = PyObject_CallObject(m_func_checkPort, args);
+        if(pRet){
+            long bHasVul =PyLong_AsLong(pRet);
+            printf("isOpen ret:%ld\n",bHasVul);
+            if(bHasVul != 0){
+                return true;
+            }
+        }
+    }else{
+        printf("init serial erro...\n");
+    }
+    return false;
 }
 
 void PyUtil::pyfuncTest()

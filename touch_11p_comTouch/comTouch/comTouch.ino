@@ -27,7 +27,7 @@ void setup() {
   pinMode(LED_BUILTIN, OUTPUT);  
   mySCoop.start();
 }
-bool isStart = true;
+bool isStart = false;
 
 int touchNum = -1;
 
@@ -54,6 +54,7 @@ defineTaskLoop(Task2)
     if(touchNum != -1)
     {
       touchOnePin(touchNum);
+      touchNum = -1;
     }
   }
  }
@@ -102,7 +103,7 @@ void Task1::loop()
         char tmpnow = Serial.read();
 //        delay(1);
         Serial.print(tmpnow);
-        delay(1);        // delay in between reads for stability
+//        delay(1);        // delay in between reads for stability
         tmp = tmpnow;
         switch(tmp){
           case '1':
@@ -172,4 +173,3 @@ void Task1::loop()
 void loop() {
     yield();
 }
-

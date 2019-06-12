@@ -8,6 +8,19 @@
 import os,sys
 import serial
 import time
+import json
+
+def func_getSerial():
+    print(os.system('pwd'))
+    try:
+        if os.path.exists('config.json'):
+            f = open('config.json','r')
+            dictmp = json.loads(f.read())
+            f.close()
+            return dictmp['port'],dictmp['btv']
+    except Exception as e:
+        print('load config.josn erro...')
+    return None,None
 
 class STool(object):
     """docstring for STool"""
@@ -15,13 +28,25 @@ class STool(object):
     #pbtlv:波特率,默认为115200
     def __init__(self):
         super(STool, self).__init__()
-        self.dev = None
-        self.pbtv = None
-        self.t = serial.Serial('/dev/cu.wchusbserial14140',115200,timeout=0.5)
+        self.dev,self.pbtv = func_getSerial()
+        print(self.dev,self.pbtv)
+        self.t = None
+        if self.dev and self.pbtv:
+            try:
+                self.t = serial.Serial(self.dev,self.pbtv,timeout=0.5)
+            except Exception as e:
+                print('pyuitl init serial erro...')
         self.isOK = False
-    def setPort(self,pdev,pbtlv=115200):
-        self.dev = pdev
-        self.pbtv = pbtlv
+    # def setPort(self,pdev,pbtlv=115200):
+    #     self.dev = pdev
+    #     self.pbtv = pbtlv
+    #     # tmp = copy()
+    #     try:
+    #         print(self.dev,self.pbtv)
+    #         self.t = serial.Serial("/dev/cu.wchusbserial14140",115200,timeout=0.5)
+    #     except Exception as e:
+    #         print("pyutil设置串口错误...")
+    #         self.t = None
     #打开串口
     def openSerial(self):
         print(self.dev)
@@ -62,20 +87,42 @@ class STool(object):
             print('serial not open')
             return False
     def readPort(self):
-        n = self.t.inWaiting()
-        # print(n)
-        if n > 0:
-            pstr = self.t.read(n)
-            return pstr
-        return ''
+        if self.isOpen():
+            n = self.t.inWaiting()
+            # print(n)
+            if n > 0:
+                pstr = self.t.read(n)
+                return pstr
+            return ''
+        else:
+            return ''
 
 
 stool = STool()
 
+
 def func_initSerial(pPort,pBTV):
-    print('initSerial')
-    stool.setPort('/dev/cu.wchusbserial14140',115200)
-    print('initSerial end')
+    print('save serial:%s,%d'%(pPort,pBTV))
+    dictmp = {'port':str(pPort),'btv':int(pBTV)}
+    out = json.dumps(dictmp)
+    print(out)
+    print(dictmp)
+    f = open('config.json','w')
+    f.write(out)
+    f.close()
+
+    return True
+
+
+# def func_initSerial(pPort,pBTV):
+#     print('initSerial')
+#     stool.setPort('/dev/cu.wchusbserial14140',115200)
+#     print('initSerial end')
+
+def func_isSerialOpen():
+    if stool:
+        return stool.isOpen()
+    return False
 
 def func_openSerial():
     if stool:
@@ -137,24 +184,27 @@ def func_touchOnce():
 def test():
     print('aaaabbbb')
     func_initSerial('/dev/cu.wchusbserial14140', 115200)
-    time.sleep(2)
-    if(func_openSerial()):
-        print('open ok')
-    else:
-        print('open erro')
-    time.sleep(5)
-    func_sendCMD('t')
-    count = 10
-    while count > 0:
-        count -= 1
-        data = func_readPort()
-        if data == '':
-            time.sleep(0.1)
-        else:
-            print('get port data=%s'%(data))
-            break
+    # time.sleep(2)
+    # if(func_openSerial()):
+    #     print('open ok')
+    # else:
+    #     print('open erro')
+    # time.sleep(5)
+    # func_sendCMD('t')
+    # count = 10
+    # while count > 0:
+    #     count -= 1
+    #     data = func_readPort()
+    #     if data == '':
+    #         time.sleep(0.1)
+    #     else:
+    #         print('get port data=%s'%(data))
+    #         break
+    # time.sleep(1)
+    # func_closePort()
     time.sleep(1)
-    func_closePort()
+    dat = func_isSerialOpen()
+    print(dat)
 
 #测试
 if __name__ == '__main__':
