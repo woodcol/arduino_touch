@@ -15,7 +15,7 @@
 #define key   A0
 
 
-#define touchTime   30    //点击屏的时间
+#define touchTime   25    //点击屏的时间
 
 
 #define delayTimeMin   1000     //两次点击的间隔最短时间，1,单位为秒
@@ -30,32 +30,38 @@ int nextPinTouch = 0;      //下次点击延时最短的引脚ID,
 
 
 bool isStart = true;       //是否开启点击,默认上电即开启,当按下按键时关闭点击，再按下时启动点击
+bool isTouchNow = false;
+
 
 void touchOnePin(int pinNum)
 {
   if(isStart){
+      isTouchNow = true;
       digitalWrite(pinNum,LOW);
       digitalWrite(LED_BUILTIN,HIGH);
       //按下延时时间,可在touchTime那里修改，程序原始设置是20ms
-      sleep(touchTime); 
+      delay(touchTime); 
       digitalWrite(pinNum,HIGH);
       digitalWrite(LED_BUILTIN,LOW);
       Serial.println(pinNum);
       Serial.flush();
-      sleep(touchTime); 
+      delay(touchTime); 
+      isTouchNow = false;
       
   }else{
-    digitalWrite(J10, HIGH);  
-    digitalWrite(J1, HIGH); 
-    digitalWrite(J2, HIGH); 
-    digitalWrite(J3, HIGH); 
-    digitalWrite(J4, HIGH); 
-    digitalWrite(J5, HIGH); 
-    digitalWrite(J6, HIGH); 
-    digitalWrite(J7, HIGH); 
-    digitalWrite(J8, HIGH); 
-    digitalWrite(J9, HIGH); 
-    digitalWrite(Jok, HIGH); 
+    //j10,j1,j2,j3,j4,j5,j6,j7,j8,j9,jJok依次不点击
+    digitalWrite(J10,HIGH);
+    digitalWrite(J1,HIGH);
+    digitalWrite(J2,HIGH);
+    digitalWrite(J3,HIGH);
+    digitalWrite(J4,HIGH);
+    digitalWrite(J5,HIGH);
+    digitalWrite(J6,HIGH);
+    digitalWrite(J7,HIGH);
+    digitalWrite(J8,HIGH);
+    digitalWrite(J9,HIGH);
+    digitalWrite(Jok,HIGH);
+    //不点击的时间,可在delayTime那里修改，程序原始设置是25ms
   }
 }
 
@@ -89,15 +95,48 @@ int updateNowTouch(int pinID)
 
  defineTaskLoop(Task1)
  {
-   unsigned long nowtime=millis();  //系统开始运行的时间;
-   for(int i = 0;i < 11;i++)
-   {
-      if(nowtime >= pinRD[i]){
-        updateNowTouch(i);
-        touchOnePin(pinkeys[i]);
+  if(isStart){
+    if(!isTouchNow){
+        unsigned long nowtime=millis();  //系统开始运行的时间;
+         for(int i = 0;i < 11;i++)
+         {
+            if(nowtime >= pinRD[i]){
+              updateNowTouch(i);
+              touchOnePin(pinkeys[i]);
+            }
+         }
       }
-   }
-   
+  }else{
+    //j10,j1,j2,j3,j4,j5,j6,j7,j8,j9,jJok依次按下
+    digitalWrite(J10,LOW);
+    digitalWrite(J1,LOW);
+    digitalWrite(J2,LOW);
+    digitalWrite(J3,LOW);
+    digitalWrite(J4,LOW);
+    digitalWrite(J5,LOW);
+    digitalWrite(J6,LOW);
+    digitalWrite(J7,LOW);
+    digitalWrite(J8,LOW);
+    digitalWrite(J9,LOW);
+    digitalWrite(Jok,LOW);
+    //按下延时时间,可在touchTime那里修改，程序原始设置是20ms
+    delay(touchTime); 
+    //j10,j1,j2,j3,j4,j5,j6,j7,j8,j9,jJok依次不点击
+    digitalWrite(J10,HIGH);
+    digitalWrite(J1,HIGH);
+    digitalWrite(J2,HIGH);
+    digitalWrite(J3,HIGH);
+    digitalWrite(J4,HIGH);
+    digitalWrite(J5,HIGH);
+    digitalWrite(J6,HIGH);
+    digitalWrite(J7,HIGH);
+    digitalWrite(J8,HIGH);
+    digitalWrite(J9,HIGH);
+    digitalWrite(Jok,HIGH);
+    //不点击的时间,可在delayTime那里修改，程序原始设置是25ms
+    delay(touchTime);
+  }
+      
  }
 
 
