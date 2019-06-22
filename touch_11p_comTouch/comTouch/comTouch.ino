@@ -101,10 +101,11 @@ void Task1::loop()
        if (Serial.available() > 0) {
         delay(1); // 等待数据传完
         char tmpnow = Serial.read();
-//        delay(1);
-        Serial.print(tmpnow);
-//        delay(1);        // delay in between reads for stability
+        delay(1);
         tmp = tmpnow;
+        Serial.print(tmp);
+        Serial.flush();
+        delay(1);        // delay in between reads for stability
         switch(tmp){
           case '1':
           {
