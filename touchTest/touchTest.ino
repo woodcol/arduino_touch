@@ -17,6 +17,6 @@ void loop() {
   digitalWrite(8, HIGH);  //8脚输出设置为高电平，点击头停止触发点击屏幕
   digitalWrite(LED_BUILTIN, LOW);   // 让Arduino板子上的LED灯熄灭
 
-  delay(1);             //等1000毫秒，也就是1秒后，再让程序重新运行loop()函数
+  delay(950);             //等1000毫秒，也就是1秒后，再让程序重新运行loop()函数
 
 }
