@@ -226,7 +226,7 @@ class COMTool(object):
         else:
             print(self.comPort)
             if self.comPort and self.comPort != '' and int(self.comPort) >= 0 and int(self.comPort) < 20: 
-                self.log.set("正在打开串口:com%s,请等串口通信初始化完成"%(self.comPort))
+                self.log.set("正在打开串口:com%s,请等串口初始化完成"%(self.comPort))
                 time.sleep(0.5)
                 if not self.isOpeningCOM:
                     print('xdd')
@@ -238,6 +238,7 @@ class COMTool(object):
                     else:
                         tmport = 'com' + self.comPort
                         self.initSeial(tmport)
+                        time.sleep(0.5)
                         if pyutil.func_openSerial():
                             print('open ok')
                             self.isCheckOK = False
@@ -256,7 +257,7 @@ def serialThread(pUtool):
     if pyutil.func_isSerialOpen():
         pUtool.showLog('尝试打开之前设置的串口')
     else:
-        pUtool.showLog('未设置串口号，或串口被占用，串口号可在设备管理器中查看')
+        pUtool.showLog('未设置串口号，或串口被占用，\n串口号可在设备管理器中查看')
     while True:
         time.sleep(1.0)
         if pUtool.isTestCom:

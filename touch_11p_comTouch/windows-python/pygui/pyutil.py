@@ -49,6 +49,7 @@ class STool(object):
     #         self.t = None
     #打开串口
     def openSerial(self):
+        self.dev,self.pbtv = func_getSerial()
         print(self.dev)
         print(self.pbtv)
         # self.t = serial.Serial(str(self.dev),int(self.pbtv),timeout=1)  #初始化串口
@@ -60,6 +61,7 @@ class STool(object):
                 return True
         else:
             try:
+                print(self.dev,self.pbtv)
                 self.t = serial.Serial(self.dev,self.pbtv,timeout=0.5)
             except Exception as e:
                 print('pyuitl init serial erro...')
