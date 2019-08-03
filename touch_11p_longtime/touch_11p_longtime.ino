@@ -67,7 +67,7 @@ bool isTouch = false;
  {
    if(isStart){
 
-    //功能，J1~J10,jok为按一下按键后点住屏，再按一下按键不点
+    //功能，J1~J10为按一下按键后点住屏，再按一下按键不点,jok为每秒20次点击，按一下按键后变为不点，再按一下又为每秒20次
       
       digitalWrite(J10,HIGH);
       digitalWrite(J1,HIGH);
@@ -79,6 +79,8 @@ bool isTouch = false;
       digitalWrite(J7,HIGH);
       digitalWrite(J8,HIGH);
       digitalWrite(J9,HIGH);
+      digitalWrite(Jok,LOW);
+      delay(touchTime);
       digitalWrite(Jok,HIGH);
       delay(delayTime);
     
@@ -103,7 +105,7 @@ bool isTouch = false;
       delay(1);
       digitalWrite(J9,LOW);
       delay(1);
-      digitalWrite(Jok,LOW);
+      digitalWrite(Jok,HIGH);
       delay(1);
   }
  }
