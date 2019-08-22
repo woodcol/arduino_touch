@@ -15,19 +15,17 @@
 #define key   A0
 
 
-#define touchTime   25    //点击屏的时间
+#define touchTimeMin   50    //点击屏的时间最短，单位毫秒
 
+#define touchTimeMax   200   //点击屏的时间最长，单位毫秒
 
-#define delayTimeMin   1000     //两次点击的间隔最短时间，1,单位为秒
+#define delayTimeMin   120     //两次点击的间隔最短时间，6秒,单位为50毫秒
 
-#define delayTimeMax   20000    //两次点击的间隔最长时间，20,单位为秒
+#define delayTimeMax   200    //两次点击的间隔最长时间，10秒,单位为50毫秒
 
 const int pinkeys[11] = {J1,J2,J3,J4,J5,J6,J7,J8,J9,J10,Jok}; //要点击的引脚和排号对应关系
 
-unsigned long pinRD[11] = {0,0,0,0,0,0,0,0,0,0,0};   //所有引脚的下次点击延时时间
-
-int nextPinTouch = 0;      //下次点击延时最短的引脚ID,
-
+unsigned long pinRD = 0;   //下次点击延时时间
 
 bool isStart = true;       //是否开启点击,默认上电即开启,当按下按键时关闭点击，再按下时启动点击
 bool isTouchNow = false;
@@ -37,15 +35,15 @@ void touchOnePin(int pinNum)
 {
   if(isStart){
       isTouchNow = true;
+      int touchTime = random(touchTimeMin,touchTimeMax);
       digitalWrite(pinNum,LOW);
       digitalWrite(LED_BUILTIN,HIGH);
       //按下延时时间,可在touchTime那里修改，程序原始设置是20ms
       delay(touchTime); 
       digitalWrite(pinNum,HIGH);
       digitalWrite(LED_BUILTIN,LOW);
-      Serial.println(pinNum);
-      Serial.flush();
-      delay(touchTime); 
+
+      delay(25); 
       isTouchNow = false;
       
   }else{
@@ -65,32 +63,10 @@ void touchOnePin(int pinNum)
   }
 }
 
-int findMinDelayTouchPin()
-{
-  unsigned long minDelay = pinRD[0];
-  int tmptouch = 0;
-  for(int i = 0;i < 11;i++)
-  {
-    if(minDelay > pinRD[i]){
-      tmptouch = i;
-      minDelay = pinRD[i];
-    }
-  }
-  return tmptouch;
-}
-
-int initAllFirstDelayTime()
+void initDelayTime()
 {
   unsigned long nowtime=millis();  //系统开始运行的时间;
-  for(int i = 0;i < 11;i++)
-  {
-      pinRD[i] = nowtime + random(delayTimeMin,delayTimeMax);
-  }
-}
-int updateNowTouch(int pinID)
-{
-  unsigned long nowtime=millis();  //系统开始运行的时间;
-  pinRD[pinID] =  nowtime + random(delayTimeMin,delayTimeMax);
+  pinRD = nowtime + random(delayTimeMin,delayTimeMax)*50;
 }
 
  defineTaskLoop(Task1)
@@ -98,10 +74,12 @@ int updateNowTouch(int pinID)
   if(isStart){
     if(!isTouchNow){
         unsigned long nowtime=millis();  //系统开始运行的时间;
-         for(int i = 0;i < 11;i++)
-         {
-            if(nowtime >= pinRD[i]){
-              updateNowTouch(i);
+        if(nowtime >= pinRD){
+            initDelayTime();
+           Serial.println(pinRD-nowtime);
+           Serial.flush();
+            for(int i = 0;i < 11;i++)
+            {
               touchOnePin(pinkeys[i]);
             }
          }
@@ -120,7 +98,7 @@ int updateNowTouch(int pinID)
     digitalWrite(J9,LOW);
     digitalWrite(Jok,LOW);
     //按下延时时间,可在touchTime那里修改，程序原始设置是20ms
-    delay(touchTime); 
+    delay(touchTimeMin); 
     //j10,j1,j2,j3,j4,j5,j6,j7,j8,j9,jJok依次不点击
     digitalWrite(J10,HIGH);
     digitalWrite(J1,HIGH);
@@ -134,7 +112,7 @@ int updateNowTouch(int pinID)
     digitalWrite(J9,HIGH);
     digitalWrite(Jok,HIGH);
     //不点击的时间,可在delayTime那里修改，程序原始设置是25ms
-    delay(touchTime);
+    delay(touchTimeMin);
   }
       
  }
@@ -161,15 +139,15 @@ void setup() {
   //设置所有点击控制引脚为功能输出
   pinMode(LED_BUILTIN, OUTPUT);   //设置板子上的控制LED的引脚为输出高低电平的功能，引脚输出高电平时板子上的LED灯会亮
   delay(1);
-  delay(1);
   for(int i = 0;i < 11;i++)
   {
     pinMode(pinkeys[i], OUTPUT);
   }
+  delay(1);
   Serial.begin(115200);
 
   delay(1);
-  nextPinTouch = initAllFirstDelayTime();
+  initDelayTime();
   delay(1);
   mySCoop.start();
 }
