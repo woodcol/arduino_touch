@@ -23,6 +23,10 @@
 
 #define delayTimeMax   200    //两次点击的间隔最长时间，10秒,单位为50毫秒
 
+#define runTimesMax 320
+
+int runtimes  =  runTimesMax;         //程序远行320次后停止
+
 const int pinkeys[11] = {J1,J2,J3,J4,J5,J6,J7,J8,J9,J10,Jok}; //要点击的引脚和排号对应关系
 
 unsigned long pinRD = 0;   //下次点击延时时间
@@ -72,7 +76,8 @@ void initDelayTime()
  defineTaskLoop(Task1)
  {
   if(isStart){
-    if(!isTouchNow){
+    if(runtimes > 0){
+      if(!isTouchNow){
         unsigned long nowtime=millis();  //系统开始运行的时间;
         if(nowtime >= pinRD){
             initDelayTime();
@@ -84,35 +89,38 @@ void initDelayTime()
             }
          }
       }
+       runtimes--;
+    }
   }else{
-    //j10,j1,j2,j3,j4,j5,j6,j7,j8,j9,jJok依次按下
-    digitalWrite(J10,LOW);
-    digitalWrite(J1,LOW);
-    digitalWrite(J2,LOW);
-    digitalWrite(J3,LOW);
-    digitalWrite(J4,LOW);
-    digitalWrite(J5,LOW);
-    digitalWrite(J6,LOW);
-    digitalWrite(J7,LOW);
-    digitalWrite(J8,LOW);
-    digitalWrite(J9,LOW);
-    digitalWrite(Jok,LOW);
-    //按下延时时间,可在touchTime那里修改，程序原始设置是20ms
-    delay(touchTimeMin); 
-    //j10,j1,j2,j3,j4,j5,j6,j7,j8,j9,jJok依次不点击
-    digitalWrite(J10,HIGH);
-    digitalWrite(J1,HIGH);
-    digitalWrite(J2,HIGH);
-    digitalWrite(J3,HIGH);
-    digitalWrite(J4,HIGH);
-    digitalWrite(J5,HIGH);
-    digitalWrite(J6,HIGH);
-    digitalWrite(J7,HIGH);
-    digitalWrite(J8,HIGH);
-    digitalWrite(J9,HIGH);
-    digitalWrite(Jok,HIGH);
-    //不点击的时间,可在delayTime那里修改，程序原始设置是25ms
-    delay(touchTimeMin);
+    runtimes = runTimesMax;
+//    //j10,j1,j2,j3,j4,j5,j6,j7,j8,j9,jJok依次按下
+//    digitalWrite(J10,LOW);
+//    digitalWrite(J1,LOW);
+//    digitalWrite(J2,LOW);
+//    digitalWrite(J3,LOW);
+//    digitalWrite(J4,LOW);
+//    digitalWrite(J5,LOW);
+//    digitalWrite(J6,LOW);
+//    digitalWrite(J7,LOW);
+//    digitalWrite(J8,LOW);
+//    digitalWrite(J9,LOW);
+//    digitalWrite(Jok,LOW);
+//    //按下延时时间,可在touchTime那里修改，程序原始设置是20ms
+//    delay(touchTimeMin); 
+//    //j10,j1,j2,j3,j4,j5,j6,j7,j8,j9,jJok依次不点击
+//    digitalWrite(J10,HIGH);
+//    digitalWrite(J1,HIGH);
+//    digitalWrite(J2,HIGH);
+//    digitalWrite(J3,HIGH);
+//    digitalWrite(J4,HIGH);
+//    digitalWrite(J5,HIGH);
+//    digitalWrite(J6,HIGH);
+//    digitalWrite(J7,HIGH);
+//    digitalWrite(J8,HIGH);
+//    digitalWrite(J9,HIGH);
+//    digitalWrite(Jok,HIGH);
+//    //不点击的时间,可在delayTime那里修改，程序原始设置是25ms
+//    delay(touchTimeMin);
   }
       
  }

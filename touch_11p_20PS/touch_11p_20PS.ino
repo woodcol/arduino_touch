@@ -22,7 +22,7 @@
 
 bool isStart = true;       //是否开启点击,默认上电即开启,当按下按键时关闭点击，再按下时启动点击
 
-
+#define runtimes = 320
 
 defineTask(Task1);
  void Task1::setup()
