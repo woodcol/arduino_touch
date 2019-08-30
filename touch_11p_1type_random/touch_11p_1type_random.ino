@@ -87,9 +87,10 @@ void initDelayTime()
             {
               touchOnePin(pinkeys[i]);
             }
+            runtimes--;
          }
       }
-       runtimes--;
+       
     }
   }else{
     runtimes = runTimesMax;
