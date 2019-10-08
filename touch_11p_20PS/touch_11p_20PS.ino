@@ -146,6 +146,7 @@ defineTask(Task1);
 
 //Arduino开机或者复位后只运行一次的初始化函数setup()
 void setup() {
+  //pinMode(key,INPUT_PULLUP); //key引脚未接电阻时，对key按键使用芯片内上拉电阻
   pinMode(key,INPUT);
   mySCoop.start();
 }
