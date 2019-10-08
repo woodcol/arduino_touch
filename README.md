@@ -35,3 +35,12 @@ http://www.wch.cn/products/CH340.html
 ![](https://github.com/woodcol/arduino_touch/raw/master/img/sc.png)
 
 6.注意，在arduino最新版1.8.8中，如果出现烧写错误，要把处理器设置为(OLD ATmega328p),这是新为新版arduino和旧板的芯引导程序bootloader不一样。
+
+## 第三方库的安装
+
+用到的所有第三方库都放在lib（https://github.com/woodcol/arduino_touch/tree/master/lib） 目录下了，用的时候需要把这个目录下的所有文件夹复制到Arduino的库目录下来使用，方法如下：
+
+在Arduino开发工具的菜单栏里先，"文件"->"首选项"，在设置界面里会看到有一个"项目文件夹位置"的路径
+
+在这个路径下有一个libraries目录，请将这里的MsTimer2和SCoop两个库的文件夹整个复制进去。这样这两个三方库就安装到Arduino的开发环境下了
+
