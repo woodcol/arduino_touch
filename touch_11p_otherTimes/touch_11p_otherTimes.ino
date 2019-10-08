@@ -121,7 +121,7 @@ int time1P3 = 45;    //每个点击周期为1/15秒～=66毫秒，即每秒点15
         digitalWrite(J10,LOW);
         delay(1);
         digitalWrite(Jok,LOW);
-        //按下延时时间,可在touchTime那里修改，程序原始设置是20ms
+        //按下延时时间,可在touchTime那里修改，程序原始设置是33ms
         delay(touchTime); 
         //j10,j1,j2,j3,j4,j5,j6,j7,j8,j9,jJok依次不点击
         digitalWrite(J6,HIGH);

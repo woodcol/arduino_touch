@@ -62,29 +62,49 @@ defineTask(Task1);
 
     //j10,j1,j2,j3,j4,j5,j6,j7,j8,j9,jJok依次按下
     digitalWrite(J10,LOW);
+    delay(1);
     digitalWrite(J1,LOW);
+    delay(1);
     digitalWrite(J2,LOW);
+    delay(1);
     digitalWrite(J3,LOW);
+    delay(1);
     digitalWrite(J4,LOW);
+    delay(1);
     digitalWrite(J5,LOW);
+    delay(1);
     digitalWrite(J6,LOW);
+    delay(1);
     digitalWrite(J7,LOW);
+    delay(1);
     digitalWrite(J8,LOW);
+    delay(1);
     digitalWrite(J9,LOW);
+    delay(1);
     digitalWrite(Jok,LOW);
     //按下延时时间,可在touchTime那里修改，程序原始设置是20ms
-    delay(touchTime); 
+    delay(touchTime-10); 
     //j10,j1,j2,j3,j4,j5,j6,j7,j8,j9,jJok依次不点击
     digitalWrite(J10,HIGH);
+    delay(1);
     digitalWrite(J1,HIGH);
+    delay(1);
     digitalWrite(J2,HIGH);
+    delay(1);
     digitalWrite(J3,HIGH);
+    delay(1);
     digitalWrite(J4,HIGH);
+    delay(1);
     digitalWrite(J5,HIGH);
+    delay(1);
     digitalWrite(J6,HIGH);
+    delay(1);
     digitalWrite(J7,HIGH);
+    delay(1);
     digitalWrite(J8,HIGH);
+    delay(1);
     digitalWrite(J9,HIGH);
+    delay(1);
     digitalWrite(Jok,HIGH);
     //不点击的时间,可在delayTime那里修改，程序原始设置是25ms
     delay(delayTime);
