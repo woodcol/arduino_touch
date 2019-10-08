@@ -17,6 +17,13 @@ https://item.taobao.com/item.htm?id=592983523791
 这是ch340芯片的官方驱动，有linux，mac，windows等等驱动,选择自已适合自已电脑系统的驱动
 http://www.wch.cn/products/CH340.html
 
+## arduino开发工具下载地址
+
+https://www.arduino.cc/en/Main/Software
+
+点击下载后，会有一个赞助页面，如果不想赞助arduino的开发者，或者现在没有能力赞助，可以选下边的“just download”直接下载。
+
+
 ## 使用方法
 
 1.在arduino的IDE里打开touchTest目录下的touchtest.ino。
