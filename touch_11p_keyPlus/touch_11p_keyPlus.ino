@@ -58,6 +58,7 @@ void initALLOutPutPin(){
 void setup() {
   delay(100);
 //  Serial.begin(115200);
+  initALLOutPutPin();
   pinMode(key, OUTPUT); 
   digitalWrite(key, HIGH); 
   pinMode(key,INPUT_PULLUP);//key引脚未接电阻时，对key按键使用芯片内上拉电阻
