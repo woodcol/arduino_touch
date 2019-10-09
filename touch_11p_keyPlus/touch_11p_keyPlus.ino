@@ -16,11 +16,11 @@
 /**
 下边有5个时间设置参数，是一个响应音频信号触发后的点击动作周期完整时间
 **/
-#define delaystart   0     //音频端有信号时延时开始的时间，单位:毫秒,为0表示无启动延时
+#define delaystart   1     //音频端有信号时延时开始的时间，单位:毫秒,为0表示无启动延时
 #define touchtime1   35    //第一个点击头按屏时间:35毫秒
 #define midDelay     3000  //第一个点击头停止的延时时间3000毫秒，即3秒
 #define touchtime2   35    //第二个点击头按屏时间:35毫秒
-#define delayend     0     //一套动作响应结束后的延时等待时间，0表示不等，直接进入一次音频信号检测
+#define delayend     1     //一套动作响应结束后的延时等待时间，0表示不等，直接进入一次音频信号检测
 
 //初始化所有点击头
 void initALLOutPutPin(){
@@ -57,8 +57,11 @@ void initALLOutPutPin(){
 //Arduino开机或者复位后只运行一次的初始化函数setup()
 void setup() {
   delay(100);
-  Serial.begin(115200);
+//  Serial.begin(115200);
+  pinMode(key, OUTPUT); 
+  digitalWrite(key, HIGH); 
   pinMode(key,INPUT_PULLUP);//key引脚未接电阻时，对key按键使用芯片内上拉电阻
+  delay(10);
 }
 
 //Arduino程序主循环loop()函数部分
