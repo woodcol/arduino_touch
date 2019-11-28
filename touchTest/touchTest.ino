@@ -13,7 +13,7 @@ void loop() {
   delay(29);               //延时50毫秒
   digitalWrite(8, LOW);    //8脚输出低电平，点击头发生点击动作
   digitalWrite(LED_BUILTIN, HIGH);   // 让Arduino的LED灯亮起
-  delay(20);               //延时50毫秒，（也就是让程序暂停50毫秒，点击头点击屏幕50毫秒）
+  delay(30);               //延时50毫秒，（也就是让程序暂停50毫秒，点击头点击屏幕50毫秒）
   digitalWrite(8, HIGH);  //8脚输出设置为高电平，点击头停止触发点击屏幕
   digitalWrite(LED_BUILTIN, LOW);   // 让Arduino板子上的LED灯熄灭
 

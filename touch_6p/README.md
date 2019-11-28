@@ -26,3 +26,7 @@ https://fengmm521.taobao.com
 https://github.com/fabriceo/SCoop
 
 在这里查看SCoop库的使用方法，作者有放一个pdf教程在项目目录下
+
+实际请使用下边路径下的库
+
+https://github.com/woodcol/arduino_touch/tree/master/lib
