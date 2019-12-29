@@ -17,9 +17,9 @@
 
 #define delayTime   35    //两次点击的间隔时间,单位毫秒
 
-#define   dTime1    300     //J1点击后的间隔时间,单位毫秒
-#define   dTime2    300     //J2点击后的间隔时间,单位毫秒
-#define   dTime3    2000    //J3点击后的间隔时间,单位毫秒
+#define   dTime1    200     //J1点击后的间隔时间,单位毫秒
+#define   dTime2    200     //J2点击后的间隔时间,单位毫秒
+#define   dTime3    1000    //J3点击后的间隔时间,单位毫秒
 
 
 //所有点击头点击一次,用时100ms
