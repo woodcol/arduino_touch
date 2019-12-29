@@ -17,7 +17,7 @@
 ``` C++
 #define touchTime   35    //点击屏的时间,单位毫秒
 
-#define delayTime   35    //两次点击的间隔时间,单位毫秒
+#define delayTime   35    //点击后保持非按下的一段时间,单位毫秒
 
 #define   dTime1    300     //J1点击后的间隔时间,单位毫秒
 #define   dTime2    300     //J2点击后的间隔时间,单位毫秒
