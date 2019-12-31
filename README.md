@@ -16,11 +16,11 @@ https://item.taobao.com/item.htm?id=592983523791
 
 例子程序
 
-https://github.com/woodcol/arduino_touch/examples
+https://github.com/woodcol/arduino_touch/tree/master/examples
 
-在[examples](https://github.com/woodcol/arduino_touch/examples)目录下的[11p](https://github.com/woodcol/arduino_touch/examples/11p)中是目前根据用户需求对11个点击头的主控板编写的所有程序
+在[examples](https://github.com/woodcol/arduino_touch/tree/master/examples)目录下的[11p](https://github.com/woodcol/arduino_touch/tree/master/examples/11p)中是目前根据用户需求对11个点击头的主控板编写的所有程序
 
-在[examples](https://github.com/woodcol/arduino_touch/examples)目录下的[nano](https://github.com/woodcol/arduino_touch/examples/nano)中是最早没有做主控pcb电路板时编写的真对arduino nano小板编写的一些简单示例程序,这些程序对有想自已设计主控板的或者不想买11头主控的程序可以参考
+在[examples](https://github.com/woodcol/arduino_touch/tree/master/examples)目录下的[nano](https://github.com/woodcol/arduino_touch/tree/master/examples/nano)中是最早没有做主控pcb电路板时编写的真对arduino nano小板编写的一些简单示例程序,这些程序对有想自已设计主控板的或者不想买11头主控的程序可以参考
 
 
 ## USB转串口芯片驱动程序下载
