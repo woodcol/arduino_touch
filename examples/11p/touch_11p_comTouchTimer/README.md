@@ -55,6 +55,7 @@ delay，这个参数表示如果times的值大于1时是多次点击时，多次
 
 
 ##### Arduino程序说明
+
 comTouchTimer目录为arduino上开发板程序源码，这里使用到了SCoop的Arduino的多线程库。这个库在项目上层的lib目录下
 
 ## USB转串口芯片驱动程序下载
