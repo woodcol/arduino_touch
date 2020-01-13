@@ -76,7 +76,13 @@ https://github.com/woodcol/arduino_touch/tree/master/examples/11p/touch_11p_butt
 
 所有点击头的点击受按钮控制，每按一次按钮，11个点击头都同时发生一次点击事件
 
-###### 10. 其他点击方式
+###### 10. 按键控制点击(touch_11p_button)
+
+https://github.com/woodcol/arduino_touch/tree/master/examples/11p/touch_11p_comTouchTimer
+
+所有点击头的点击受电脑定时点击控制，可以通过在电脑上设置配置文件，来精确的定时控制点击
+
+###### 11. 其他点击方式
 
 所有按键循环点击：[touch_11p_6p](https://github.com/woodcol/arduino_touch/tree/master/examples/11p/touch_11p_6p)
 
