@@ -63,6 +63,12 @@ class WorkerThread(threading.Thread):
             else:
                 print('读取串口数据错误')
 
+btn1x = 405
+btn2x = 455
+btn3x = 505
+
+btnw = 2
+btnh = 2
 
 class COMTool(object):
     """docstring for COMTool"""
@@ -82,7 +88,7 @@ class COMTool(object):
         #
         self.window = tk.Tk()
         self.window.title('青苹果屏幕点击器')
-        self.window.geometry('500x360')  # 这里的乘是小x
+        self.window.geometry('600x360')  # 这里的乘是小x
         self.log = StringVar()
         self.log.set('正在初始化。。。')
         self.status = IntVar()
@@ -104,52 +110,52 @@ class COMTool(object):
 
         
         # 第6步，创建并放置两个按钮分别触发两种情况
-        self.b1 = tk.Button(self.window, text='1', width=5,
-                       height=2, command=self.touch1)
+        self.b1 = tk.Button(self.window, text='1', width=btnw,
+                       height=btnh, command=self.touch1)
         # b1.pack()
-        self.b1.place(x=305,y=5,anchor='nw')
+        self.b1.place(x=btn1x,y=5,anchor='nw')
 
-        self.b2 = tk.Button(self.window, text='2', width=5,
-                       height=2, command=self.touch2)
+        self.b2 = tk.Button(self.window, text='2', width=btnw,
+                       height=btnh, command=self.touch2)
         # b2.pack()
-        self.b2.place(x=355,y=5,anchor='nw')
+        self.b2.place(x=btn2x,y=5,anchor='nw')
 
-        self.b3 = tk.Button(self.window, text='3', width=5,
-                       height=2, command=self.touch3)
-        self.b3.place(x=405,y=5,anchor='nw')
-
-
-        self.b4 = tk.Button(self.window, text='4', width=5,
-                       height=2, command=self.touch4)
-        self.b4.place(x=305,y=55,anchor='nw')
-        self.b5 = tk.Button(self.window, text='5', width=5,
-                       height=2, command=self.touch5)
-        self.b5.place(x=355,y=55,anchor='nw')
-        self.b6 = tk.Button(self.window, text='6', width=5,
-                       height=2, command=self.touch6)
-        self.b6.place(x=405,y=55,anchor='nw')
+        self.b3 = tk.Button(self.window, text='3', width=btnw,
+                       height=btnh, command=self.touch3)
+        self.b3.place(x=btn3x,y=5,anchor='nw')
 
 
-        self.b7 = tk.Button(self.window, text='7', width=5,
-                       height=2, command=self.touch7)
-        self.b7.place(x=305,y=105,anchor='nw')
-        self.b8 = tk.Button(self.window, text='8', width=5,
-                       height=2, command=self.touch8)
-        self.b8.place(x=355,y=105,anchor='nw')
-        self.b9 = tk.Button(self.window, text='9', width=5,
-                       height=2, command=self.touch9)
-        self.b9.place(x=405,y=105,anchor='nw')
+        self.b4 = tk.Button(self.window, text='4', width=btnw,
+                       height=btnh, command=self.touch4)
+        self.b4.place(x=btn1x,y=55,anchor='nw')
+        self.b5 = tk.Button(self.window, text='5', width=btnw,
+                       height=btnh, command=self.touch5)
+        self.b5.place(x=btn2x,y=55,anchor='nw')
+        self.b6 = tk.Button(self.window, text='6', width=btnw,
+                       height=btnh, command=self.touch6)
+        self.b6.place(x=btn3x,y=55,anchor='nw')
 
-        self.b10 = tk.Button(self.window, text='10', width=5,
-                       height=2, command=self.touch10)
-        self.b10.place(x=305,y=155,anchor='nw')
-        self.bok = tk.Button(self.window, text='ok', width=5,
-                       height=2, command=self.touchOK)
-        self.bok.place(x=405,y=155,anchor='nw')
+
+        self.b7 = tk.Button(self.window, text='7', width=btnw,
+                       height=btnh, command=self.touch7)
+        self.b7.place(x=btn1x,y=105,anchor='nw')
+        self.b8 = tk.Button(self.window, text='8', width=btnw,
+                       height=btnh, command=self.touch8)
+        self.b8.place(x=btn2x,y=105,anchor='nw')
+        self.b9 = tk.Button(self.window, text='9', width=btnw,
+                       height=btnh, command=self.touch9)
+        self.b9.place(x=btn3x,y=105,anchor='nw')
+
+        self.b10 = tk.Button(self.window, text='10', width=btnw,
+                       height=btnh, command=self.touch10)
+        self.b10.place(x=btn1x,y=155,anchor='nw')
+        self.bok = tk.Button(self.window, text='ok', width=btnw,
+                       height=btnh, command=self.touchOK)
+        self.bok.place(x=btn3x,y=155,anchor='nw')
          
 
         self.bcon = tk.Button(self.window,textvariable=self.conBtnTxt, width=10,
-                       height=2, command=self.touchConnect)
+                       height=btnh, command=self.touchConnect)
         self.bcon.place(x=335,y=255,anchor='nw')
 
         self.lb = tk.Label(self.window,width=40,height=10,textvariable = self.log)
