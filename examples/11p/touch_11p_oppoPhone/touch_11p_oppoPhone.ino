@@ -20,7 +20,7 @@
 #define   dTime1    100     //J1点击后的间隔时间,单位毫秒
 #define   dTime2    100     //J2点击后的间隔时间,单位毫秒
 #define   dTime3    100    //J3点击后的间隔时间,单位毫秒
-#define   dTime4    1000    //J3点击后的间隔时间,单位毫秒
+#define   dTime4    1000    //J4点击后的间隔时间,单位毫秒
 
 
 //所有点击头点击一次,用时100ms
@@ -82,8 +82,8 @@ void loop() {
         delay(dTime2);             //延时间隔时间dTime2
         touchOnceWithPinNum(J3);   //J3点击一次
         delay(dTime3);             //延时间隔时间dTime3
-        touchOnceWithPinNum(J4);   //J3点击一次
-        delay(dTime4);             //延时间隔时间dTime3
+        touchOnceWithPinNum(J4);   //J4点击一次
+        delay(dTime4);             //延时间隔时间dTime4
   
    }else{
       //按钮非按下，并且没有逻辑在跑时所有点击头都设置为非按下状态
