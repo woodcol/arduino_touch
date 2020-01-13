@@ -153,9 +153,11 @@ def func_openSerial():
     return isopen
 
 def func_sendCMD(pcmd):
-    back = stool.sendCmd(pcmd)
+    back = None
     if pythonVersion() > 2:
         back = stool.sendCmd(pcmd.encode())
+    else:
+        back = stool.sendCmd(pcmd)
     print('send cmd python back:%d'%(back))
     return back
 
