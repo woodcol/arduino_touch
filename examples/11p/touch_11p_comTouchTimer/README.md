@@ -23,6 +23,8 @@
 
 在python_code目录下为电脑端有界面的上位机程序源码。串口部分使用python的pyserial串口模块。
 
+上位机运行方法，先安装python2或者python3,再把pygui/config.json里的串口的端口号设置好，再设置好timer.json中的时间。然后运行main.py就可以了，时间到了就会点击手机屏。
+
 #### 上位机时间配置文件timer.json说明
 
 ``` json
