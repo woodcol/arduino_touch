@@ -25,6 +25,13 @@
 
 上位机运行方法，先安装python2或者python3,再把pygui/config.json里的串口的端口号设置好，再设置好timer.json中的时间。然后运行main.py就可以了，时间到了就会点击手机屏。
 
+## 注意
+在windwos xp系统下的串口库pyserial只能使用3.0,xp系统下安装串口库的方法:
+
+```
+python -mpip install pyserial==3.0
+```
+
 #### 上位机时间配置文件timer.json说明
 
 ``` json
