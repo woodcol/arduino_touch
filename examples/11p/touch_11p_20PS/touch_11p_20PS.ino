@@ -16,9 +16,9 @@
 #define key   A0
 
 
-#define touchTime   25    //点击屏的时间,注意，有的国产手机本身扫描点击的频率比较慢，所以达不到每秒20次，像魅族手机，这里要改成50
+#define touchTime   35    //点击屏的时间,注意，有的国产手机本身扫描点击的频率比较慢，所以达不到每秒20次，像魅族手机，这里要改成50
 
-#define delayTime   25    //两次点击的间隔时间,魅族手机这里也请改成50
+#define delayTime   35    //两次点击的间隔时间,魅族手机这里也请改成50
 
 bool isStart = true;       //是否开启点击,默认上电即开启,当按下按键时关闭点击，再按下时启动点击
 
@@ -56,6 +56,7 @@ defineTask(Task1);
   digitalWrite(Jok, HIGH); 
   delay(1);
  }
+ 
  void Task1::loop()
  {
    if(isStart){
