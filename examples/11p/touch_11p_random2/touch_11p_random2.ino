@@ -16,11 +16,9 @@
 
 
 #define touchTime   35    //点击屏的时间
+#define touchDelay  35    //多次点击时的间隔时间
 
-
-#define delayTimeMin   1000     //两次点击的间隔最短时间，1,单位为秒
-
-#define delayTimeMax   20000    //两次点击的间隔最长时间，20,单位为秒
+int touchTimes=1;         //随机时间到了点击几次，1,表示点击一次,2，表示是双击,....
 
 const int pinkeys[11] = {J1,J2,J3,J4,J5,J6,J7,J8,J9,J10,Jok}; //要点击的引脚和排号对应关系
 
@@ -39,17 +37,20 @@ bool isTouchNow = false;
 void touchOnePin(int pinNum)
 {
   if(isStart){
-      isTouchNow = true;
-      digitalWrite(pinNum,LOW);
-      digitalWrite(LED_BUILTIN,HIGH);
-      //按下延时时间,可在touchTime那里修改，程序原始设置是20ms
-      delay(touchTime); 
-      digitalWrite(pinNum,HIGH);
-      digitalWrite(LED_BUILTIN,LOW);
-      Serial.println(pinNum);
-      Serial.flush();
-      delay(touchTime); 
-      isTouchNow = false;
+        isTouchNow = true;
+        for(int i = 0;i<touchTimes;i++)
+        {
+          digitalWrite(pinNum,LOW);
+          digitalWrite(LED_BUILTIN,HIGH);
+          //按下延时时间,可在touchTime那里修改，程序原始设置是20ms
+          delay(touchTime); 
+          digitalWrite(pinNum,HIGH);
+          digitalWrite(LED_BUILTIN,LOW);
+          delay(touchDelay);   
+        }
+        Serial.println(pinNum);
+        Serial.flush();
+        isTouchNow = false;
       
   }else{
     //j10,j1,j2,j3,j4,j5,j6,j7,j8,j9,jJok依次不点击
