@@ -149,6 +149,7 @@ defineTask(Task1);
 void setup() {
   //pinMode(key,INPUT_PULLUP); //key引脚未接电阻时，对key按键使用芯片内上拉电阻
   pinMode(key,INPUT);
+  delay(100);
   mySCoop.start();
 }
 

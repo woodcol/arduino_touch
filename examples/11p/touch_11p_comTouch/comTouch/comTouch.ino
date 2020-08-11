@@ -17,9 +17,9 @@
 
 #define key   A0
 
-#define touchTime   35    //点击屏的时间,即模仿手指点击时在手屏上的停留时间，单位：毫秒
+#define touchTime   30    //点击屏的时间,即模仿手指点击时在手屏上的停留时间，单位：毫秒
 
-#define delayTime   35    //点击后停止时间，单位：毫秒
+#define delayTime   30    //点击后停止时间，单位：毫秒
 
 // the setup routine runs once when you press reset:
 void setup() {
